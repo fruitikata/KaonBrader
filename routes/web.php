@@ -15,6 +15,9 @@ Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store
 
 Route::get('/recipes/create', [RecipeController::class, 'create'])->name('recipes.create');
 
+Route::get('/recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

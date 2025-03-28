@@ -10,6 +10,17 @@
                     </a>
                 </div>
 
+
+                    <!-- Post Button -->
+                    <div class="flex items-center">
+
+                            <a href="{{ route('recipes.create') }}" 
+                                class="flex items-center justify-center bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-medium h-8 px-3 rounded shadow-md my-1">
+                                + Upload Recipe
+                            </a>
+                    </div>
+
+
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <!--home button - LOGO-->

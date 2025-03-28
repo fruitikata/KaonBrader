@@ -17,7 +17,12 @@ class RecipeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+             'user_id' => 1,
+             'title' => fake()->sentence(),
+             'description' => fake()->sentence(),
+             'ingredients' => fake()->paragraph(20),
+             'steps' => fake()->paragraph(30),
+
         ];
     }
 }

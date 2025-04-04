@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+#click:hover{
+    cursor: pointer;
+    background-color: rgb(217, 216, 215);
+}
+
+.section-divider {
+    border-top: 2px solid #ddd; /* Light gray color */
+    padding-top: 10px;
+}

@@ -12,7 +12,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::latest()->paginate(8);
+        $recipes = Recipe::latest()->paginate(12);
 
         return view('dashboard', [ 'recipes' => $recipes]);
     }

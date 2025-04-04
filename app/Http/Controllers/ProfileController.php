@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,4 +58,12 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function myProfile()
+{
+    $user = auth()->user();
+    $recipes = $user->recipes;  // assuming you have a `recipes()` relationship on the User model
+
+    return view('myprofile', compact('user', 'recipes'));
+}
 }

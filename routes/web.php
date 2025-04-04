@@ -17,6 +17,10 @@ Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store
 Route::get('/recipes/create', [RecipeController::class, 'create'])->name('recipes.create');
 
 Route::get('/recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
+//Route::get('/recipes/{recipe}', [RecipeController::class, 'edit'])->name('recipes.edit');
+//Route::put('/recipes/{recipe}', [RecipeController::class, 'update'])->name('recipes.update');
+
+//Route::patch('/recipes/{recipe}', [RecipeController::class, 'update'])->name('recipes.update');
 
 Route::post('/favorites/toggle/{recipeId}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
 

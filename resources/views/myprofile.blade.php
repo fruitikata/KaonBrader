@@ -88,9 +88,10 @@ class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-5
 
     <!-- Edit Form Mode -->
     <template x-if="editingRecipe.editing">
-        <form :action="'/recipes/' + editingRecipe.id" method="POST" enctype="multipart/form-data">
+        {{-- <form :action="'/recipes/' + editingRecipe.id" method="POST" enctype="multipart/form-data"> --}}
+            <form :action="{{ route('recipes.update', $recipe) }}" method="post">
             @csrf
-            @method('PATCH')
+            @method('PUT')
 
             <h2 class="text-2xl font-bold mb-4 text-black dark:text-white">Edit Recipe</h2>
 

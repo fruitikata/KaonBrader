@@ -64,7 +64,7 @@ class RecipeController extends Controller
      */
     public function edit(Recipe $recipe)
     {
-        //
+        return view('recipes.edit', [ 'post' => $recipe]);
     }
 
     /**

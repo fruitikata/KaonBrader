@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Recipe;
+use Illuminate\Support\Facades\Storage;
 
 class RecipeController extends Controller
 {
@@ -72,7 +73,23 @@ class RecipeController extends Controller
      */
     public function update(Request $request, Recipe $recipe)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'ingredients' => 'required|string',
+            'steps' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $request->file('image')->store('recipe_images', 'public');
+        }
+
+        // update
+        $recipe->update($validatedData);
+
+        return redirect()->route('dashboard')->with('success', 'Recipe updated!');
     }
 
     /**
@@ -80,6 +97,14 @@ class RecipeController extends Controller
      */
     public function destroy(Recipe $recipe)
     {
-        //
+        // Delete the image file from storage if it exists
+    if ($recipe->image && Storage::disk('public')->exists($recipe->image)) {
+        Storage::disk('public')->delete($recipe->image);
+    }
+
+    // Delete the recipe from the database
+    $recipe->delete();
+
+    return redirect()->route('dashboard')->with('success', 'Recipe deleted successfully!');
     }
 }

@@ -11,10 +11,19 @@ class RecipeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $recipes = Recipe::latest()->paginate(12);
+        // $recipes = Recipe::latest()->paginate(12);
+        // $recipes = Recipe::latest()->get();
+        $search = $request->input('search');
 
+    $recipes = Recipe::query()
+        ->when($search, function ($query, $search) {
+            $query->where('title', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%");
+        })
+        ->latest()
+        ->get();
         return view('dashboard', [ 'recipes' => $recipes]);
     }
 
@@ -57,8 +66,27 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        return view('show', compact('recipe'));
+        // return view('show', compact('recipe'));
+
+        // return view('show', ['recipe' => $recipe]);
+        // return view('show', compact('recipe', 'recipes'));
+
+        // $recipes = Recipe::latest()->paginate(12); 
+        // return view('show', [
+        // 'recipe' => $recipe,
+        // 'recipes' => $recipes
+            $recipes = Recipe::where('id', '!=', $recipe->id)->latest()->get();
+                    
+            return view('show', [
+            'recipe' => $recipe,
+            'recipes' => $recipes,
+        ]);
     }
+
+    public function markBackClicked()
+{
+    session(['back_clicked' => true]);
+}
 
     /**
      * Show the form for editing the specified resource.

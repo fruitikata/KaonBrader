@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Recipe;
 
 class User extends Authenticatable
 {
@@ -61,6 +62,11 @@ class User extends Authenticatable
     public function favorites()
     {
         return $this->hasMany(Favorite::class, 'user_id');
+    }
+
+    public function comments()
+    {
+       return $this->hasMany(Comment::class);
     }
 
 }

@@ -47,4 +47,12 @@ class RegisteredUserController extends Controller
 
         return redirect(route('dashboard', absolute: false));
     }
+
+    public function userPosts(User $user)
+    {
+        // Get the user's posts (recipes)
+        $recipes = $user->recipes;  // Assuming 'recipes' is a relationship on the User model
+
+        return view('user.userposts', compact('user', 'recipes'));
+    }
 }

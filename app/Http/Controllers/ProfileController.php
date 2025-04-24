@@ -62,7 +62,7 @@ class ProfileController extends Controller
     public function myProfile()
 {
     $user = auth()->user();
-    $recipes = $user->recipes;  // assuming you have a `recipes()` relationship on the User model
+    $recipes = $user->recipes;
 
     return view('myprofile', compact('user', 'recipes'));
 }

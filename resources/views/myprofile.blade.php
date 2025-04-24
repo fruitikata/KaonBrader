@@ -4,7 +4,7 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight pt-20">
             {{ __('Your saved recipes') }}
         </h2>
     </x-slot>
@@ -37,25 +37,24 @@
             @foreach ($recipes as $recipe)
                 <div class="recipe-item relative">
                     @if ($recipe->image)
-        <div class="recipe-image-wrapper">
-            <a href="{{ route('recipes.show', $recipe->id) }}" class="block">
-                <img src="{{ asset('storage/' . $recipe->image) }}" 
-                     alt="{{ $recipe->title }}" 
-                     class="recipe-image w-full h-auto rounded-md transition-all duration-300 ease-in-out cursor-pointer">
-            </a>
-            
-            <!--Edit button-->
-            <button 
-            @click="showEditModal = true; editingRecipe = Object.assign({ editing: false }, {{ $recipe->toJson() }})"
-    class="edit-button absolute bottom-2 right-2 bg-white text-black p-2 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-300">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-    </svg>
-</button>
-
-
-        </div>
-            @endif
+                        <div class="recipe-image-wrapper">
+                            <a href="{{ route('recipes.show', $recipe->id) }}" class="block">
+                            <img src="{{ asset('storage/' . $recipe->image) }}" 
+                            alt="{{ $recipe->title }}" 
+                            class="recipe-image w-full h-auto rounded-md transition-all duration-300 ease-in-out cursor-pointer">
+                            </a>
+                            <p class="mt-2 text-sm text-gray-700 dark:text-gray-300 font-bold truncate">{{ $recipe->title }}</p>
+                            
+                            <!--Edit button-->
+                            <button 
+                            @click="showEditModal = true; editingRecipe = Object.assign({ editing: false }, {{ $recipe->toJson() }})"
+                            class="edit-button absolute mb-5 bottom-2 right-2 bg-white text-black p-2 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                            </svg>
+                            </button>
+                        </div>
+                    @endif
                 </div>
             @endforeach
         </div>
@@ -247,7 +246,7 @@
 
     @media (max-width: 480px) {
         .masonry {
-            columns: 1;
+            columns: 2;
         }
     }
     </style>

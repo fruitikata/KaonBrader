@@ -15,15 +15,19 @@ class RecipeController extends Controller
     {
         // $recipes = Recipe::latest()->paginate(12);
         // $recipes = Recipe::latest()->get();
+
         $search = $request->input('search');
 
-    $recipes = Recipe::query()
-        ->when($search, function ($query, $search) {
-            $query->where('title', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%");
-        })
-        ->latest()
-        ->get();
+    if ($search) {
+        $recipes = Recipe::where('title', 'like', "%{$search}%")
+                         ->orWhere('description', 'like', "%{$search}%")
+                         ->latest()
+                         ->get();
+
+        return view('search', [ 'recipes' => $recipes, 'search' => $search ]);
+    }
+
+    $recipes = Recipe::latest()->get();
         return view('dashboard', [ 'recipes' => $recipes]);
     }
 

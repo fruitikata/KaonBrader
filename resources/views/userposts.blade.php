@@ -1,35 +1,24 @@
-<!-- resources/views/user/userposts.blade.php -->
-{{-- <x-layout>
-    
-    <h2>{{ $user->name }}'s Recipes</h2>
-    
-    @if($recipes->isEmpty())
-        <p>This user has no recipes yet.</p>
-    @else
-        <ul>
-            @foreach($recipes as $recipe)
-                <li>
-                    <a href="{{ route('recipe.show', $recipe) }}">{{ $recipe->title }}</a> <!-- Link to individual recipe -->
-                    <p>{{ $recipe->created_at->diffForHumans() }}</p>
-                </li>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight pt-20">
+            {{ $user->name }}'s Recipes
+        </h2>
+    </x-slot>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-5 mt-6">
+        <div class="columns-2 sm:columns-3 lg:columns-4 gap-5 space-y-5">
+            @foreach ($recipes as $recipe)
+                @if ($recipe->image)
+                    <div class="break-inside-avoid mb-5">
+                        <a href="{{ route('recipes.show', $recipe->id) }}" class="block">
+                            <img src="{{ asset('storage/' . $recipe->image) }}" 
+                                 alt="{{ $recipe->title }}" 
+                                 class="w-full object-cover rounded-md transition-transform duration-200 hover:scale-105">
+                        </a>
+                        <p class="mt-2 text-sm text-gray-700 dark:text-gray-300 font-bold truncate">{{ $recipe->title }}</p>
+                    </div>
+                @endif
             @endforeach
-        </ul>
-    @endif 
-
-</x-layout> --}}
-
-@extends('layouts.app')
-
-@section('content')
-    <div class="container">
-        <h1>Recipes by {{ $user->name }}</h1>
-        
-        @foreach($recipes as $post)
-            <div class="post">
-                <!-- Display each post/recipe here -->
-                <h2>{{ $recipe->title }}</h2>
-                <p>{{ $recipe->description }}</p>
-            </div>
-        @endforeach
+        </div>
     </div>
-@endsection
+</x-app-layout>

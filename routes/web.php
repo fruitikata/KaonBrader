@@ -50,7 +50,6 @@
 
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 
-
-    Route::get('/users/{user}/posts', [UserPostsController::class, 'posts'])->name('user.posts');
-
+    Route::get('/user/{user}/recipes', [UserPostsController::class, 'index'])
+    ->name('user.recipes');
     require __DIR__.'/auth.php';

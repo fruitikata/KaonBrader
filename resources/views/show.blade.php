@@ -50,11 +50,18 @@
                     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                         {{ $recipe->title }}
                     </h2>
-                    <p class="text-sm mb-2">
+                    {{-- <p class="text-sm mb-2">
                         Posted {{ $recipe->created_at->diffForHumans() }} by 
                         <a href="#" class="font-semibold">{{ $recipe->user->name ?? 'Unknown' }}</a>
-                    </p>
+                    </p> --}}
         
+                    <p class="text-sm mb-2">
+                        Posted {{ $recipe->created_at->diffForHumans() }} by 
+                        <a href="{{ route('user.recipes', $recipe->user->id) }}" class="font-semibold">
+                            {{ $recipe->user->name ?? 'Unknown' }}
+                        </a>
+                    </p>
+                    
                     <h3 class="text-lg font-bold mt-2">Description</h3>
                     <p>{{ $recipe->description }}</p>
         
@@ -131,11 +138,11 @@
         @foreach ($recipes as $other)
             @if ($other->id !== $recipe->id)
             <div class="break-inside-avoid mb-4">
-                <a href="{{ route('recipes.show', $other->id) }}" class="block bg-white dark:bg-gray-700 rounded-lg shadow hover:shadow-lg transition overflow-hidden">
+                <a href="{{ route('recipes.show', $other->id) }}" class="block">
                     @if ($other->image)
                         <img src="{{ asset('storage/' . $other->image) }}"
                              alt="{{ $other->title }}"
-                             class="w-full object-cover rounded-md">
+                             class="w-full object-cover rounded-md transition-transform duration-200 hover:scale-105">
                     @endif
                 </a>
             </div>

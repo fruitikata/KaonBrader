@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Recipe; 
 
 class UserPostsController extends Controller
 {
-    public function userPosts(User $user)
-    {
-        $posts = $user->recipes()->latest()->get(); // Assuming recipes are the posts
-        return view('userposts', compact('user', 'posts'));
-    }
+    public function index(User $user)
+{
+    $recipes = $user->recipes()->latest()->get();
+    return view('userposts', compact('user', 'recipes')); // No folder prefix
+}
 }

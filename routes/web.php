@@ -6,6 +6,9 @@
     use App\Http\Controllers\FavoriteController;
     use App\Http\Controllers\UserPostsController;
     use App\Http\Controllers\CommentController;
+    use App\Http\Controllers\GoogleController;
+    use App\Models\Recipe;
+
 
     Route::get('/', function () {
         return view('welcome');
@@ -53,3 +56,13 @@
     Route::get('/user/{user}/recipes', [UserPostsController::class, 'index'])
     ->name('user.recipes');
     require __DIR__.'/auth.php';
+
+    Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+    Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+    Route::get('login/google', [GoogleController::class, 'redirectToGoogle']);
+    Route::get('login/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+    Route::get('/dashboard', function () {
+        $recipes = Recipe::latest()->get();
+        return view('dashboard', compact('recipes'));
+    })->middleware(['auth', 'verified'])->name('dashboard');

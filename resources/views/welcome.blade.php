@@ -21,31 +21,26 @@
         @endif
     </head>
     <body class="bg-[#FDFDFC] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col pt-16">
-        <header class="fixed top-0 left-0 w-full bg-gray-200 p-6 shadow-md flex justify-between items-center text-base lg:text-lg">
-
+        <header class="fixed top-0 left-0 w-full bg-gray-200 p-6 shadow-md flex justify-between items-center text-sm lg:text-base">
             <a href="{{ url('/') }}">
-                <img src="{{ asset('kaonbrader.png') }}" alt="KaonBrader Logo" class="h-10 w-auto">
+                <img src="{{ asset('kaonbrader.png') }}" alt="KaonBrader Logo" class="h-8 w-auto">
             </a>
-    
+        
             @if (Route::has('login'))
-                <nav class="flex items-center gap-4">
+                <nav class="flex items-center gap-3">
                     @auth
-                        <!--<a  
-                            href="{{ url('/Home') }}"
-                            class="inline-block px-5 py-1.5 border border-[#19140035] hover:border-[#5e5840ec] text-[#1b1b18] dark:text-[#EDEDEC] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-md text-sm leading-normal">
-                            Home
-                        </a>-->
+                        <!-- Hidden for now -->
                     @else
                         <a
                             href="{{ route('login') }}"
-                            class="inline-block px-5 py-1.5 text-[#F4B133] dark:text-[#F4B133] border border-transparent hover:border-[#5d5122ec] rounded-md text-xl leading-normal font-bold font-[Poppins]">
+                            class="inline-block px-4 py-1 text-[#F4B133] border border-transparent hover:border-[#5d5122ec] rounded-md text-base font-semibold font-[Poppins]">
                             Log in
                         </a>
-    
+        
                         @if (Route::has('register'))
                             <a
                                 href="{{ route('register') }}"
-                                class="inline-block px-5 py-1.5 text-[#F4B133] dark:text-[#F4B133] border border-transparent hover:border-[#5e5840ec] rounded-md text-xl leading-normal font-bold font-[Poppins]">
+                                class="inline-block px-4 py-1 text-[#F4B133] border border-transparent hover:border-[#5e5840ec] rounded-md text-base font-semibold font-[Poppins]">
                                 Sign up
                             </a>
                         @endif
@@ -53,25 +48,32 @@
                 </nav>
             @endif
         </header>
+        
     
         
         
-        <div class="flex flex-col lg:flex-row items-center justify-between min-h-screen px-8 lg:px-16">
+        <div class="flex flex-col-reverse below1040:flex-col lg:flex-row items-center justify-between min-h-screen px-8 lg:px-16">
             <!-- Left Side - Description -->
-            <div>
+            <div class="text-center below1040:text-left lg:text-left">
                 <h1 class="text-5xl lg:text-xl font-bold text-[#1b1b18] font-[Poppins]">
                     Recipe Sharing among Students
                 </h1>
-                <p class="mt-4 text-lg text-[#1b1b18]">
-                    Discover the best local eats and enjoy a seamless ordering experience.<br>Lorem ipsum dolor sit amet consectetur. Enim adipiscing fermentum <br>nisl ante dolor semper gravida in. Risus varius dui vitae nunc hac <br>mattis congue at vitae. 
+                <p class="mt-4 text-lg text-[#1b1b18] text-justify max-w-2xl mx-auto below1040:mx-0">
+                    Discover budget-friendly student-made meals and share your own recipes with ease.
+                    This platform is built by and for students, making it the perfect space to explore
+                    creative, affordable dishes that fit your lifestyle and wallet. Whether you're cooking
+                    in a dorm, apartment, or shared space, you can browse quick meals, add your own favorites,
+                    and connect with others who know what it's like to cook on a student budget.
+                    From instant noodle hacks to healthy meal preps, your next go-to recipe is just a click away.
                 </p>
             </div>
         
             <!-- Right Side - Logo -->
-            <div class="mt-10 lg:mt-0">
-                <img src="{{ asset('landIMG.png') }}" alt="KaonBraderLandingLogo" class="w-[400px] h-auto">
+            <div class="mt-10 below1040:mt-0 lg:mt-0">
+                <img src="{{ asset('landIMG.png') }}" alt="KaonBraderLandingLogo" class="w-[400px] h-auto mx-auto">
             </div>
         </div>
+        
         
 
         @if (Route::has('login'))

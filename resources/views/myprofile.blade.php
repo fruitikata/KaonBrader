@@ -13,7 +13,7 @@
         <div class="flex justify-between mb-6">
             <button onclick="window.location.href='{{ route('favorites.index') }}'"
                  class="flex items-center gap-1 px-3 h-8 py-0 rounded-full text-sm
-                 {{ $isFavoritesPage ? 'bg-black text-white border border-white' : 'bg-white-500 text-black border border-black' }}">
+                 {{ $isFavoritesPage ? 'bg-black text-white border border-white dark:bg-white dark:text-black dark:border-black' : 'bg-white-500 text-black border border-black dark:bg-gray-800 dark:text-white dark:border-white' }}>
              
                  <svg xmlns="http://www.w3.org/2000/svg" fill="black" 
                      viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
@@ -25,12 +25,12 @@
              </button>
              <!-- User Info -->
             <div class="text-end">
-                <h1 class="text-2xl font-bold">{{ $user->name }}</h1>
+                <h1 class="text-2xl font-bold text-black dark:text-white">{{ $user->name }}</h1>
                 <p class="text-gray-600 dark:text-gray-400">Joined {{ $user->created_at->format('F Y') }}</p>
             </div>
         </div>
 
-        <h3 class="text-lg font-bold mt-4 section-divider">My Recipes</h3>
+        <h3 class="text-lg font-bold mt-4 section-divider dark:text-white">My Recipes</h3>
         
         <!-- Masonry Layout Container -->
         <div class="masonry">

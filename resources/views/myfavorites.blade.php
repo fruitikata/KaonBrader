@@ -22,7 +22,9 @@
             <button 
                 onclick="window.location.href='{{ route('profile.show') }}'"
                 class="flex items-center gap-1 px-3 h-8 rounded-full text-sm 
-                       {{ $isFavoritesPage ? 'bg-white text-black border border-black' : 'bg-black text-white border border-white' }}">
+                       {{ $isFavoritesPage 
+                            ? 'bg-white text-black border border-black dark:bg-white dark:text-black' 
+                            : 'bg-black text-white border border-white dark:bg-black dark:text-white' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="white" 
                      viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
                      class="size-3">
